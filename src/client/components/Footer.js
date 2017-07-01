@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap'
-import { Row, Col } from 'react-bootstrap'
+import {connect} from 'react-redux'
 
-export default class Header extends Component {
+class Footer extends Component {
   render() {
-    const brand = "React Redux Flask Starter"
-    const links = [
-      { to:'/', text:"Home" },
-      { to:'/edit', text:"Edit" },
-    ]
+    const textStyle = {
+      position: 'relative',
+      color: 'black',
+      backgroundColor: 'white',/*'#cde7fe',*/
+      height: `${this.props.height}px`,
+      lineHeight: `${this.props.height}px`
+    }
     return (
-      <footer>
-        <Row>
-          <Col xs={12}>
-            <div className="footer-text">
-              Made with ♥, Tom Effland 2017
-            </div>
-          </Col>
-        </Row>
-      </footer>
+      <div className="footer">
+        <div className="footer-text" style={textStyle}>
+          <div className="text-center">Made with ♥, Tom Effland 2017</div>
+        </div>
+      </div>
     )
   }
 }
+
+export default connect((state) => {
+  return { height:state.window.footerHeight }
+})(Footer)
